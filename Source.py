@@ -13,6 +13,14 @@ def initialize_file():
     if not os.path.exists(EXPENSES_FILE):
         with open(EXPENSES_FILE, 'w') as file:
             pass
+    else:
+        # Remove empty lines from the file
+        with open(EXPENSES_FILE, 'r') as file:
+            lines = file.readlines()
+        with open(EXPENSES_FILE, 'w') as file:
+            for line in lines:
+                if line.strip():  # Write non-empty lines back to the file
+                    file.write(line)
 
 # Add an expense to the file
 def add_expense():
